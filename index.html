@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Coway · Paid Media Live Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#002E6D; --blue:#0057B8; --blue-2:#0072CE; --cyan:#00A9E0; --teal:#00B7C3;
+    --google:#1A73E8; --meta:#0E9E6E;
+    --bg:#EEF4FA; --panel:#F5F8FC; --card:#FFFFFF;
+    --ink:#0B2440; --muted:#5E7085; --line:#E3EBF3;
+    --green:#12A574; --amber:#E8A33D; --soft-blue:#EAF3FC;
+    --shadow:0 1px 2px rgba(11,36,64,.04), 0 8px 24px rgba(11,36,64,.06);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);
+    font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;font-feature-settings:'tnum' on,'lnum' on;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 22px 64px}
+
+  /* Header */
+  .topbar{background:linear-gradient(120deg,var(--navy) 0%,var(--blue) 52%,#008ED6 100%);
+    color:#fff;border-radius:0 0 26px 26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .topbar::after{content:"";position:absolute;right:-80px;top:-120px;width:360px;height:360px;
+    background:radial-gradient(circle,rgba(0,183,195,.35),transparent 62%);pointer-events:none}
+  .topbar-inner{max-width:1240px;margin:0 auto;padding:26px 22px 30px;position:relative;z-index:1}
+  .brandrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{width:46px;height:46px;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.18);flex:none}
+  .logo svg{width:30px;height:30px}
+  .brand h1{font-size:20px;font-weight:800;letter-spacing:.2px;line-height:1.1}
+  .brand p{font-size:12.5px;color:#CFE4F7;font-weight:500;margin-top:3px}
+  .live-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:9px 15px;border-radius:999px;font-size:12.5px;font-weight:600}
+  .dot{width:9px;height:9px;border-radius:50%;background:#38E29B;animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(56,226,155,.6)}70%{box-shadow:0 0 0 9px rgba(56,226,155,0)}100%{box-shadow:0 0 0 0 rgba(56,226,155,0)}}
+  .meta-line{display:flex;gap:26px;flex-wrap:wrap;margin-top:22px}
+  .meta-line .mi{font-size:12px;color:#BFDBF3}
+  .meta-line .mi b{display:block;color:#fff;font-size:15px;font-weight:700;margin-top:2px}
+
+  /* Channel strip */
+  .channels{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:-26px auto 0;position:relative;z-index:2;max-width:1240px;padding:0 22px}
+  .chan{background:var(--card);border-radius:16px;padding:15px 17px;box-shadow:var(--shadow);display:flex;align-items:center;gap:13px;border:1px solid var(--line)}
+  .chan .ci{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex:none}
+  .chan .meta-i{background:#E9F0FF}.chan .g-i{background:#F1F3F4}.chan .li-i{background:#E8F1FA}
+  .chan .ci svg{width:21px;height:21px}
+  .chan h4{font-size:14px;font-weight:700}
+  .chan span{font-size:11.5px;font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-top:3px}
+  .s-live{color:var(--green)}.s-soon{color:var(--muted)}
+  .sdot{width:7px;height:7px;border-radius:50%}
+  .sdot.live{background:var(--green)}.sdot.soon{background:#C4CFDA}
+
+  /* Controller */
+  .controller{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
+    margin-top:18px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .ctl-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .ctl-label{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:700;margin-right:2px}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--muted);font-family:inherit;font-size:12.5px;font-weight:700;
+    padding:8px 14px;border-radius:999px;cursor:pointer;transition:all .15s ease}
+  .chip:hover{border-color:var(--blue);color:var(--blue)}
+  .chip.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 12px rgba(0,87,184,.25)}
+  .chip.ch-meta.active{background:var(--meta);border-color:var(--meta)}
+  .chip.ch-google.active{background:var(--google);border-color:var(--google)}
+  .daterange{display:flex;align-items:center;gap:8px}
+  .daterange input[type=date]{font-family:inherit;font-size:12.5px;font-weight:600;color:var(--ink);
+    border:1px solid var(--line);border-radius:10px;padding:7px 10px;background:#fff;cursor:pointer}
+  .daterange input[type=date]:focus{outline:none;border-color:var(--blue)}
+  .daterange span{color:var(--muted);font-size:12px;font-weight:600}
+
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin:30px 4px 15px;flex-wrap:wrap;gap:6px}
+  .sec-head h2{font-size:16px;font-weight:800;letter-spacing:.2px}
+  .sec-head h2 .accent{color:var(--blue)}
+  .sec-head .sub{font-size:12.5px;color:var(--muted);font-weight:600}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
+  .kpi:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(11,36,64,.10)}
+  .kpi .cap{font-size:12px;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:7px}
+  .kpi .cap .ico{width:15px;height:15px;color:var(--blue);flex:none}
+  .kpi .val{font-size:29px;font-weight:800;letter-spacing:-.6px;margin-top:10px;line-height:1}
+  .kpi .val small{font-size:15px;font-weight:700;color:var(--muted);margin-left:1px}
+  .kpi .foot{font-size:11.5px;color:var(--muted);font-weight:600;margin-top:8px}
+  .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--cyan),var(--blue))}
+
+  .split{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-top:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+  .card h3{font-size:14px;font-weight:800;margin-bottom:3px}
+  .card .hint{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:14px}
+  .chartbox{width:100%;height:236px}
+  .legend{display:flex;gap:18px;margin-top:8px;flex-wrap:wrap}
+  .legend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:6px;vertical-align:middle}
+  .legend span{font-size:12px;color:var(--muted);font-weight:600}
+
+  .today-list{display:flex;flex-direction:column;gap:2px}
+  .trow{display:flex;align-items:center;justify-content:space-between;padding:10px 2px;border-bottom:1px dashed var(--line)}
+  .trow:last-child{border-bottom:none}
+  .trow .lab{font-size:13px;color:var(--muted);font-weight:600}
+  .trow .num{font-size:16px;font-weight:800;letter-spacing:-.2px}
+
+  .chan-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .cc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px}
+  .cc .cc-h{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+  .cc .cc-h .ci{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
+  .cc .cc-h svg{width:19px;height:19px}
+  .cc .cc-h h3{font-size:15px;font-weight:800}
+  .cc .cc-h .pct{margin-left:auto;font-size:12px;font-weight:700;color:var(--muted)}
+  .ccgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+  .ccgrid .m{background:var(--panel);border-radius:11px;padding:11px 12px}
+  .ccgrid .m .k{font-size:10.5px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+  .ccgrid .m .v{font-size:17px;font-weight:800;margin-top:5px;letter-spacing:-.3px}
+
+  .obj{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .objcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;position:relative;overflow:hidden}
+  .objcard .tag{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;padding:6px 12px;border-radius:999px;letter-spacing:.3px}
+  .tag.aware{background:var(--soft-blue);color:var(--blue)}
+  .tag.leadg{background:#FBF1E1;color:#B67C1E}
+  .objcard h3{font-size:17px;font-weight:800;margin:13px 0 2px}
+  .objcard .desc{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:16px}
+  .ministat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .ministat .m{background:var(--panel);border-radius:12px;padding:12px 13px}
+  .ministat .m .k{font-size:11px;color:var(--muted);font-weight:600}
+  .ministat .m .v{font-size:19px;font-weight:800;margin-top:5px;letter-spacing:-.4px}
+  .reserved-note{margin-top:15px;font-size:12px;color:var(--muted);font-weight:600;background:var(--panel);border-radius:11px;padding:11px 13px;display:flex;gap:9px;align-items:flex-start}
+  .reserved-note .ic{width:16px;height:16px;color:var(--amber);flex:none;margin-top:1px}
+
+  .tablecard{margin-top:16px;overflow-x:auto;padding:0}
+  table{width:100%;border-collapse:collapse;min-width:640px}
+  th,td{text-align:right;padding:12px 16px;font-size:13px}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:700;border-bottom:1px solid var(--line);background:var(--panel)}
+  tbody td{border-bottom:1px solid var(--line);font-weight:600}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr.total td{background:var(--soft-blue);font-weight:800;color:var(--navy)}
+  tbody tr:hover td{background:#FAFCFE}
+  .day-b{color:var(--ink);font-weight:700}
+  .pill-ch{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px}
+  .pill-meta{background:#E1F6EE;color:var(--meta)}.pill-google{background:#EAF1FE;color:var(--google)}
+
+  .empty{padding:40px;text-align:center;color:var(--muted);font-weight:600;font-size:13px}
+  .foot-note{margin-top:30px;text-align:center;font-size:12px;color:var(--muted);font-weight:600;line-height:1.7}
+  .foot-note b{color:var(--blue)}
+  .bwm{display:inline-flex;align-items:center;gap:7px;margin-top:6px;color:var(--navy);font-weight:800;font-size:12.5px}
+
+  @media(max-width:920px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .split,.obj,.chan-cards{grid-template-columns:1fr}
+    .channels{grid-template-columns:1fr}
+    .controller{flex-direction:column;align-items:stretch}
+  }
+  @media(max-width:520px){.kpis{grid-template-columns:1fr 1fr}.kpi .val{font-size:24px}.meta-line{gap:16px}}
+</style>
+<style>
+#gate{position:fixed;inset:0;z-index:9999;background:linear-gradient(120deg,#002E6D,#0057B8 55%,#008ED6);display:flex;align-items:center;justify-content:center;font-family:'Manrope',-apple-system,sans-serif}
+#gate .box{background:#fff;border-radius:20px;padding:34px 30px;width:min(90%,360px);box-shadow:0 20px 60px rgba(0,0,0,.3);text-align:center}
+#gate .lg{width:54px;height:54px;border-radius:15px;background:linear-gradient(#00A9E0,#0057B8);margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
+#gate h2{font-size:18px;color:#0B2440;font-weight:800;margin-bottom:4px}
+#gate p{font-size:12.5px;color:#5E7085;margin-bottom:18px;font-weight:600}
+#gate input{width:100%;padding:12px 14px;border:1.5px solid #E3EBF3;border-radius:11px;font-size:14px;font-family:inherit;margin-bottom:12px}
+#gate input:focus{outline:none;border-color:#0057B8}
+#gate button{width:100%;padding:12px;border:none;border-radius:11px;background:#0057B8;color:#fff;font-weight:700;font-size:14px;font-family:inherit;cursor:pointer}
+#gate button:hover{background:#0049a0}
+#gate .err{color:#D64545;font-size:12px;font-weight:600;margin-top:10px;min-height:16px}
+#app.locked{display:none}
+</style>
+</head>
+<body>
+<div id="gate">
+  <div class="box">
+    <div class="lg"><svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 5 9.5 5 14.5C5 18.6 8.1 21.5 12 21.5C15.9 21.5 19 18.6 19 14.5C19 9.5 12 2 12 2Z" fill="#fff"/></svg></div>
+    <h2>Coway India — Paid Media</h2>
+    <p>Private client dashboard · enter password to view</p>
+    <input id="pw" type="password" placeholder="Password" autocomplete="off">
+    <button id="go">View dashboard</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+<div id="app" class="locked">
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brandrow">
+      <div class="brand">
+        <div class="logo"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 5 9.5 5 14.5C5 18.6 8.1 21.5 12 21.5C15.9 21.5 19 18.6 19 14.5C19 9.5 12 2 12 2Z" fill="#0057B8"/><path d="M12 2C12 2 5 9.5 5 14.5C5 18.6 8.1 21.5 12 21.5V2Z" fill="#00A9E0"/></svg></div>
+        <div><h1>Coway India — Paid Media</h1><p>Live performance dashboard · Managed by Bismarck World Media</p></div>
+      </div>
+      <div class="live-pill"><span class="dot"></span> Live · Auto-updating</div>
+    </div>
+    <div class="meta-line">
+      <div class="mi">Reporting period<b id="hdr-period">—</b></div>
+      <div class="mi">Active channels<b id="hdr-channels">Meta &amp; Google</b></div>
+      <div class="mi">Objective<b>Brand Awareness &amp; Lead Generation</b></div>
+      <div class="mi">Last updated<b>19 Jul 2026, 1:21 PM IST</b></div>
+    </div>
+  </div>
+</header>
+
+<div class="channels">
+  <div class="chan">
+    <div class="ci meta-i"><svg viewBox="0 0 24 24" fill="#0866FF"><path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v2.9h-1.5c-1.5 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4C19.6 23 24 18 24 12z"/></svg></div>
+    <div><h4>Meta Ads</h4><span class="s-live"><span class="sdot live"></span>Live &amp; delivering</span></div>
+  </div>
+  <div class="chan">
+    <div class="ci g-i"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.9c-.3 1.4-1 2.5-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-7.9z"/><path fill="#34A853" d="M12 23c2.9 0 5.3-1 7.1-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.5 1.1-2.7 0-5-1.8-5.8-4.3H2.5v2.8C4.3 20.9 7.9 23 12 23z"/><path fill="#FBBC05" d="M6.2 14.5c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.7H2.5C1.8 9 1.5 10.5 1.5 12s.3 3 .9 4.3l3.8-2.8z"/><path fill="#EA4335" d="M12 5.5c1.5 0 2.9.5 3.9 1.5l3-3C17.3 2.3 14.9 1.3 12 1.3 7.9 1.3 4.3 3.4 2.5 6.7l3.8 2.8C7 7 9.3 5.5 12 5.5z"/></svg></div>
+    <div><h4>Google Ads</h4><span class="s-live"><span class="sdot live"></span>Live · YouTube awareness</span></div>
+  </div>
+  <div class="chan">
+    <div class="ci li-i"><svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 110-4.2 2.1 2.1 0 010 4.2zM7.1 20.4H3.5V9h3.6v11.4zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg></div>
+    <div><h4>LinkedIn Ads</h4><span class="s-soon"><span class="sdot soon"></span>Reserved · Launching soon</span></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- CONTROLLER -->
+  <div class="controller">
+    <div class="ctl-group">
+      <span class="ctl-label">Period</span>
+      <button class="chip" data-preset="today">Today</button>
+      <button class="chip" data-preset="yesterday">Yesterday</button>
+      <button class="chip" data-preset="last7">Last 7 Days</button>
+      <button class="chip active" data-preset="month">This Month</button>
+    </div>
+    <div class="ctl-group">
+      <span class="ctl-label">Channel</span>
+      <button class="chip ch-all active" data-ch="All">All</button>
+      <button class="chip ch-meta" data-ch="Meta">Meta</button>
+      <button class="chip ch-google" data-ch="Google">Google</button>
+    </div>
+    <div class="ctl-group daterange">
+      <span class="ctl-label">Custom</span>
+      <input type="date" id="from" min="2026-07-13" max="2026-07-19">
+      <span>to</span>
+      <input type="date" id="to" min="2026-07-13" max="2026-07-19">
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <h2 id="kpi-title">This Month <span class="accent">· Accumulated</span></h2>
+    <div class="sub" id="kpi-sub">all figures in ₹ INR</div>
+  </div>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="split">
+    <div class="card">
+      <h3>Daily Spend by Channel</h3>
+      <div class="hint" id="chart-hint">Stacked spend · Meta + Google</div>
+      <svg class="chartbox" id="trend" viewBox="0 0 640 236" preserveAspectRatio="none"></svg>
+      <div class="legend" id="legend"></div>
+    </div>
+    <div class="card">
+      <h3 id="latest-title">Latest Day</h3>
+      <div class="hint">Most recent day in range</div>
+      <div class="today-list" id="latest"></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><h2>Channel <span class="accent">Comparison</span></h2><div class="sub">for selected period</div></div>
+  <div class="chan-cards" id="chan-cards"></div>
+
+  <div class="sec-head"><h2>Performance <span class="accent">by Objective</span></h2><div class="sub" id="obj-sub">for selected period</div></div>
+  <div class="obj">
+    <div class="objcard">
+      <span class="tag aware"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>BRAND AWARENESS · LIVE</span>
+      <h3>Building visibility across Meta &amp; Google</h3>
+      <div class="desc">Maximising qualified reach, impressions &amp; video views at an efficient cost.</div>
+      <div class="ministat" id="aware-stats"></div>
+    </div>
+    <div class="objcard">
+      <span class="tag leadg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg>LEAD GENERATION · READY</span>
+      <h3>Lead campaigns launching soon</h3>
+      <div class="desc">Panel is live and will populate the moment lead-gen goes active.</div>
+      <div class="ministat">
+        <div class="m"><div class="k">Leads</div><div class="v">0</div></div>
+        <div class="m"><div class="k">Cost / Lead</div><div class="v">—</div></div>
+        <div class="m"><div class="k">Spend</div><div class="v">₹0</div></div>
+      </div>
+      <div class="reserved-note"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Current delivery on both channels is optimised for reach &amp; awareness, so no leads are recorded yet. Lead volume &amp; cost-per-lead will appear here automatically once lead-generation campaigns begin.</div>
+    </div>
+  </div>
+
+  <div class="sec-head"><h2>Day-by-Day <span class="accent">Breakdown</span></h2><div class="sub" id="table-sub">Meta &amp; Google</div></div>
+  <div class="card tablecard"><div id="table-wrap"></div></div>
+
+  <div class="foot-note">
+    Data sources: <b>Meta Ads Manager</b> (Coway India account) &amp; <b>Google Ads</b> (via connected Google Sheet) · Reach is aggregated from daily Meta figures; Google video reach is not provided in the feed.<br>
+    Prepared &amp; managed for Coway India by
+    <span class="bwm"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0057B8" stroke-width="2.4"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Bismarck World Media Pvt. Ltd.</span>
+  </div>
+</div>
+
+</div><!--/app-->
+<script>
+/* ---------------- DATA ---------------- */
+const DATA = [
+  // Meta (reach available)
+  {date:'2026-07-13', ch:'Meta',   spend:190.64, impr:47248,  reach:45625,  clicks:44,  leads:0},
+  {date:'2026-07-14', ch:'Meta',   spend:455.97, impr:109343, reach:100055, clicks:215, leads:0},
+  {date:'2026-07-16', ch:'Meta',   spend:130.43, impr:24933,  reach:24080,  clicks:58,  leads:0},
+  {date:'2026-07-17', ch:'Meta',   spend:234.27, impr:17654,  reach:16944,  clicks:51,  leads:0},
+  {date:'2026-07-18', ch:'Meta',   spend:64.66,  impr:16564,  reach:14739,  clicks:25,  leads:0},
+  {date:'2026-07-19', ch:'Meta',   spend:102.37, impr:28355,  reach:27785,  clicks:146, leads:0},
+  // Google (YouTube video awareness — no reach in feed)
+  {date:'2026-07-14', ch:'Google', spend:1199.13, impr:10560, reach:null, clicks:8,  leads:0},
+  {date:'2026-07-15', ch:'Google', spend:2892.59, impr:24873, reach:null, clicks:17, leads:0},
+  {date:'2026-07-16', ch:'Google', spend:2094.88, impr:28017, reach:null, clicks:12, leads:0},
+  {date:'2026-07-17', ch:'Google', spend:2078.24, impr:28986, reach:null, clicks:13, leads:0},
+  {date:'2026-07-18', ch:'Google', spend:2076.88, impr:30341, reach:null, clicks:17, leads:0},
+  {date:'2026-07-19', ch:'Google', spend:1149.48, impr:17467, reach:null, clicks:9,  leads:0},
+];
+const TODAY = '2026-07-19';
+const MIN_D = '2026-07-13', MAX_D = '2026-07-19';
+
+/* ---------------- HELPERS ---------------- */
+const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+const inr2 = n => '₹' + n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+const num = n => n.toLocaleString('en-IN');
+const fmtDate = s => { const [y,m,d]=s.split('-'); const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']; return d.replace(/^0/,'')+' '+M[+m-1]; };
+function addDays(s,n){const [y,m,d]=s.split('-').map(Number);const dt=new Date(Date.UTC(y,m-1,d));dt.setUTCDate(dt.getUTCDate()+n);return dt.toISOString().slice(0,10);}
+function clamp(s){return s<MIN_D?MIN_D:(s>MAX_D?MAX_D:s);}
+
+let state = {from:'2026-07-01', to:'2026-07-31', ch:'All', preset:'month'};
+
+function aggregate(rows){
+  let s={spend:0,impr:0,reach:0,clicks:0,leads:0,hasReach:false};
+  rows.forEach(r=>{s.spend+=r.spend;s.impr+=r.impr;s.clicks+=r.clicks;s.leads+=r.leads;if(r.reach!=null){s.reach+=r.reach;s.hasReach=true;}});
+  s.cpm = s.impr? s.spend/s.impr*1000 : 0;
+  s.cpc = s.clicks? s.spend/s.clicks : 0;
+  s.ctr = s.impr? s.clicks/s.impr*100 : 0;
+  return s;
+}
+function filtered(){
+  return DATA.filter(r => r.date>=state.from && r.date<=state.to && (state.ch==='All'||r.ch===state.ch));
+}
+
+/* ---------------- RENDER ---------------- */
+function render(){
+  const rows = filtered();
+  const a = aggregate(rows);
+  const dates = [...new Set(rows.map(r=>r.date))].sort();
+  const activeDays = dates.length;
+
+  // header + titles
+  const periodTxt = fmtDate(clamp(state.from<MIN_D?MIN_D:state.from)) + ' – ' + fmtDate(clamp(state.to>MAX_D?MAX_D:state.to));
+  document.getElementById('hdr-period').textContent = activeDays? periodTxt : '—';
+  document.getElementById('hdr-channels').textContent = state.ch==='All' ? 'Meta & Google' : state.ch;
+  const presetName = {today:'Today',yesterday:'Yesterday',last7:'Last 7 Days',month:'This Month',custom:'Custom Range'}[state.preset];
+  document.getElementById('kpi-title').innerHTML = presetName+' <span class="accent">· Accumulated</span>';
+  document.getElementById('kpi-sub').textContent = (activeDays? activeDays+' active day'+(activeDays>1?'s':'')+' · ':'')+'all figures in ₹ INR';
+  document.getElementById('obj-sub').textContent = state.ch==='All'?'Meta & Google · selected period':state.ch+' · selected period';
+  document.getElementById('table-sub').textContent = state.ch==='All'?'Meta & Google':state.ch;
+
+  if(!activeDays){
+    document.getElementById('kpis').innerHTML = '<div class="empty" style="grid-column:1/-1">No delivery in this date range. Try widening the period or switching channel.</div>';
+    document.getElementById('table-wrap').innerHTML = '<div class="empty">No data for this selection.</div>';
+    document.getElementById('legend').innerHTML=''; document.getElementById('trend').innerHTML='';
+    document.getElementById('latest').innerHTML=''; document.getElementById('chan-cards').innerHTML='';
+    document.getElementById('aware-stats').innerHTML=''; return;
+  }
+
+  const avgDaily = a.spend/activeDays;
+  const reachDisp = a.hasReach ? num(a.reach) : '—';
+  const reachFoot = a.hasReach ? (state.ch==='All'?'Aggregate daily (Meta)':'Unique accounts reached') : 'Not tracked for Google';
+  // KPI tiles
+  const kpis = [
+    {c:'Total Spend', v:inr(a.spend), f:'Accumulated investment', i:'<path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
+    {c:'Impressions', v:num(a.impr), f:'Times ads were on screen', i:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>'},
+    {c:'Reach', v:reachDisp, f:reachFoot, i:'<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>'},
+    {c:'Clicks', v:num(a.clicks), f:'Total link clicks', i:'<path d="M9 9l5 12 1.8-5.2L21 14z"/><path d="M7.2 2.2l1 2.4M2.2 7.2l2.4 1M2.2 13.2l2.4-1M7.2 18.2l1-2.4"/>'},
+    {c:'CPM', v:inr2(a.cpm), f:'Cost per 1,000 impressions', i:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>'},
+    {c:'CPC', v:inr2(a.cpc), f:'Cost per click', i:'<path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>'},
+    {c:'CTR', v:a.ctr.toFixed(2)+'%', f:'Click-through rate', i:'<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>'},
+    {c:'Leads', v:num(a.leads), f:'Lead-gen launching soon', i:'<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/>'},
+  ];
+  document.getElementById('kpis').innerHTML = kpis.map(k=>`<div class="kpi"><div class="cap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${k.i}</svg>${k.c}</div><div class="val">${k.v}</div><div class="foot">${k.f}</div></div>`).join('');
+
+  // latest day
+  const latestDate = dates[dates.length-1];
+  const la = aggregate(rows.filter(r=>r.date===latestDate));
+  document.getElementById('latest-title').textContent = 'Latest Day · '+fmtDate(latestDate);
+  const litems = [['Spend',inr2(la.spend)],['Impressions',num(la.impr)],['Reach',la.hasReach?num(la.reach):'—'],['Clicks',num(la.clicks)],['CPM',inr2(la.cpm)],['CPC',inr2(la.cpc)],['CTR',la.ctr.toFixed(2)+'%']];
+  document.getElementById('latest').innerHTML = litems.map(x=>`<div class="trow"><span class="lab">${x[0]}</span><span class="num">${x[1]}</span></div>`).join('');
+
+  // channel comparison
+  const chans = state.ch==='All'?['Meta','Google']:[state.ch];
+  const totSpend = a.spend||1;
+  const chIcon = {
+    Meta:'<div class="ci" style="background:#E1F6EE"><svg viewBox="0 0 24 24" fill="#0E9E6E"><path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v2.9h-1.5c-1.5 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4C19.6 23 24 18 24 12z"/></svg></div>',
+    Google:'<div class="ci" style="background:#F1F3F4"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.9c-.3 1.4-1 2.5-2.2 3.3v2.7h3.6c2.1-1.9 3.2-4.8 3.2-7.9z"/><path fill="#34A853" d="M12 23c2.9 0 5.3-1 7.1-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.5 1.1-2.7 0-5-1.8-5.8-4.3H2.5v2.8C4.3 20.9 7.9 23 12 23z"/><path fill="#FBBC05" d="M6.2 14.5c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.7H2.5C1.8 9 1.5 10.5 1.5 12s.3 3 .9 4.3z"/><path fill="#EA4335" d="M12 5.5c1.5 0 2.9.5 3.9 1.5l3-3C17.3 2.3 14.9 1.3 12 1.3 7.9 1.3 4.3 3.4 2.5 6.7l3.8 2.8C7 7 9.3 5.5 12 5.5z"/></svg></div>'
+  };
+  document.getElementById('chan-cards').innerHTML = chans.map(cn=>{
+    const ca = aggregate(rows.filter(r=>r.ch===cn));
+    const share = Math.round(ca.spend/totSpend*100);
+    const cells=[['Spend',inr(ca.spend)],['Impressions',num(ca.impr)],['Clicks',num(ca.clicks)],['CPM',inr2(ca.cpm)],['CPC',inr2(ca.cpc)],['CTR',ca.ctr.toFixed(2)+'%']];
+    return `<div class="cc"><div class="cc-h">${chIcon[cn]}<h3>${cn==='Meta'?'Meta Ads':'Google Ads'}</h3><span class="pct">${share}% of spend</span></div><div class="ccgrid">${cells.map(c=>`<div class="m"><div class="k">${c[0]}</div><div class="v">${c[1]}</div></div>`).join('')}</div></div>`;
+  }).join('');
+
+  // awareness stats
+  const as=[['Spend',inr(a.spend)],['Reach',a.hasReach?num(a.reach):'—'],['Impressions',num(a.impr)],['CPM',inr2(a.cpm)],['CTR',a.ctr.toFixed(2)+'%'],['Clicks',num(a.clicks)]];
+  document.getElementById('aware-stats').innerHTML = as.map(x=>`<div class="m"><div class="k">${x[0]}</div><div class="v">${x[1]}</div></div>`).join('');
+
+  renderTable(dates,rows);
+  renderChart(dates,rows);
+}
+
+function renderTable(dates,rows){
+  let body = dates.map(d=>{
+    const da = aggregate(rows.filter(r=>r.date===d));
+    const chs = [...new Set(rows.filter(r=>r.date===d).map(r=>r.ch))];
+    const tag = state.ch==='All'
+      ? chs.map(c=>`<span class="pill-ch pill-${c.toLowerCase()}">${c}</span>`).join(' ')
+      : '';
+    return `<tr><td class="day-b">${fmtDate(d)} ${tag}</td><td>${inr2(da.spend)}</td><td>${num(da.impr)}</td><td>${da.hasReach?num(da.reach):'—'}</td><td>${num(da.clicks)}</td><td>${inr2(da.cpm)}</td><td>${inr2(da.cpc)}</td><td>${da.ctr.toFixed(2)}%</td></tr>`;
+  }).join('');
+  const t = aggregate(rows);
+  body += `<tr class="total"><td>Total</td><td>${inr2(t.spend)}</td><td>${num(t.impr)}</td><td>${t.hasReach?num(t.reach):'—'}</td><td>${num(t.clicks)}</td><td>${inr2(t.cpm)}</td><td>${inr2(t.cpc)}</td><td>${t.ctr.toFixed(2)}%</td></tr>`;
+  document.getElementById('table-wrap').innerHTML =
+    `<table><thead><tr><th>Date</th><th>Spend</th><th>Impr.</th><th>Reach</th><th>Clicks</th><th>CPM</th><th>CPC</th><th>CTR</th></tr></thead><tbody>${body}</tbody></table>`;
+}
+
+const NS='http://www.w3.org/2000/svg';
+function el(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+function renderChart(dates,rows){
+  const svg=document.getElementById('trend'); svg.innerHTML='';
+  const W=640,H=236,padL=8,padR=8,padT=22,padB=34, iw=W-padL-padR, ih=H-padT-padB;
+  const showMeta = state.ch==='All'||state.ch==='Meta';
+  const showGoogle = state.ch==='All'||state.ch==='Google';
+  const per = dates.map(d=>{
+    const m = rows.filter(r=>r.date===d&&r.ch==='Meta').reduce((s,r)=>s+r.spend,0);
+    const g = rows.filter(r=>r.date===d&&r.ch==='Google').reduce((s,r)=>s+r.spend,0);
+    return {d, m, g, t:m+g};
+  });
+  const maxT = Math.max(...per.map(p=>p.t),1)*1.16;
+  const n=dates.length, slot=iw/n, bw=Math.min(slot*0.5,58);
+  const defs=el('defs',{});
+  defs.innerHTML='<linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FD6A0"/><stop offset="1" stop-color="#0E9E6E"/></linearGradient><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B9BF3"/><stop offset="1" stop-color="#1A73E8"/></linearGradient>';
+  svg.appendChild(defs);
+  svg.appendChild(el('line',{x1:padL,y1:padT+ih,x2:W-padR,y2:padT+ih,stroke:'#E3EBF3','stroke-width':1}));
+  per.forEach((p,i)=>{
+    const cx=padL+slot*i+slot/2, x=cx-bw/2;
+    let yBase=padT+ih;
+    const mh=showMeta?(p.m/maxT)*ih:0, gh=showGoogle?(p.g/maxT)*ih:0;
+    if(showMeta&&mh>0){const y=yBase-mh;svg.appendChild(el('rect',{x,y,width:bw,height:mh,rx:showGoogle&&gh>0?0:5,fill:'url(#gm)'}));yBase=y;}
+    if(showGoogle&&gh>0){const y=yBase-gh;svg.appendChild(el('rect',{x,y,width:bw,height:gh,rx:5,fill:'url(#gg)'}));yBase=y;}
+    const tot=(showMeta?p.m:0)+(showGoogle?p.g:0);
+    if(tot>0){const t=el('text',{x:cx,y:yBase-7,'text-anchor':'middle','font-size':11.5,'font-weight':700,fill:'#0B2440','font-family':'Manrope'});t.textContent=inr(tot);svg.appendChild(t);}
+    const dl=el('text',{x:cx,y:H-12,'text-anchor':'middle','font-size':12,'font-weight':600,fill:'#5E7085','font-family':'Manrope'});dl.textContent=fmtDate(p.d);svg.appendChild(dl);
+  });
+  let lg=[];
+  if(showMeta) lg.push('<span><i style="background:linear-gradient(#3FD6A0,#0E9E6E)"></i>Meta Spend</span>');
+  if(showGoogle) lg.push('<span><i style="background:linear-gradient(#5B9BF3,#1A73E8)"></i>Google Spend</span>');
+  document.getElementById('legend').innerHTML = lg.join('');
+}
+
+/* ---------------- CONTROLS ---------------- */
+function setPreset(p){
+  state.preset=p;
+  if(p==='today'){state.from=TODAY;state.to=TODAY;}
+  else if(p==='yesterday'){state.from=addDays(TODAY,-1);state.to=addDays(TODAY,-1);}
+  else if(p==='last7'){state.from=addDays(TODAY,-6);state.to=TODAY;}
+  else if(p==='month'){state.from='2026-07-01';state.to='2026-07-31';}
+  syncInputs(); render();
+}
+function syncInputs(){
+  document.getElementById('from').value = clamp(state.from<MIN_D?MIN_D:state.from);
+  document.getElementById('to').value = clamp(state.to>MAX_D?MAX_D:state.to);
+}
+document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-preset]').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); setPreset(b.dataset.preset);
+}));
+document.querySelectorAll('[data-ch]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-ch]').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); state.ch=b.dataset.ch; render();
+}));
+['from','to'].forEach(id=>document.getElementById(id).addEventListener('change',e=>{
+  state[id]=e.target.value; state.preset='custom';
+  document.querySelectorAll('[data-preset]').forEach(x=>x.classList.remove('active'));
+  if(state.from>state.to){ if(id==='from') state.to=state.from; else state.from=state.to; syncInputs(); }
+  render();
+}));
+
+syncInputs();
+render();
+</script>
+<script>
+(function(){
+  var H=3803473458;
+  function dj(s){var h=5381;for(var i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))&0xffffffff;}return h>>>0;}
+  function unlock(){var g=document.getElementById('gate');if(g)g.style.display='none';document.getElementById('app').classList.remove('locked');}
+  try{if(sessionStorage.getItem('coway_ok')==='1')unlock();}catch(e){}
+  function go(){var v=document.getElementById('pw').value;if(dj(v)===H){try{sessionStorage.setItem('coway_ok','1');}catch(e){}unlock();}else{document.getElementById('err').textContent='Incorrect password. Try again.';}}
+  document.addEventListener('DOMContentLoaded',function(){
+    document.getElementById('go').addEventListener('click',go);
+    document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')go();});
+    document.getElementById('pw').focus();
+  });
+})();
+</script>
+</body>
+</html>
