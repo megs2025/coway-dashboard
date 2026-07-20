@@ -194,7 +194,7 @@
       <div class="mi">Reporting period<b id="hdr-period">—</b></div>
       <div class="mi">Active channels<b id="hdr-channels">Meta &amp; Google</b></div>
       <div class="mi">Objective<b>Brand Awareness &amp; Lead Generation</b></div>
-      <div class="mi">Last updated<b>19 Jul 2026, 1:21 PM IST</b></div>
+      <div class="mi">Last updated<b id="hdr-updated">20 Jul 2026, 12:37 PM IST</b></div>
     </div>
   </div>
 </header>
@@ -233,9 +233,9 @@
     </div>
     <div class="ctl-group daterange">
       <span class="ctl-label">Custom</span>
-      <input type="date" id="from" min="2026-07-13" max="2026-07-19">
+      <input type="date" id="from" min="2026-07-13" max="2026-07-20">
       <span>to</span>
-      <input type="date" id="to" min="2026-07-13" max="2026-07-19">
+      <input type="date" id="to" min="2026-07-13" max="2026-07-20">
     </div>
   </div>
 
@@ -296,24 +296,24 @@
 </div><!--/app-->
 <script>
 /* ---------------- DATA ---------------- */
-const DATA = [
-  // Meta (reach available)
-  {date:'2026-07-13', ch:'Meta',   spend:190.64, impr:47248,  reach:45625,  clicks:44,  leads:0},
-  {date:'2026-07-14', ch:'Meta',   spend:455.97, impr:109343, reach:100055, clicks:215, leads:0},
-  {date:'2026-07-16', ch:'Meta',   spend:130.43, impr:24933,  reach:24080,  clicks:58,  leads:0},
-  {date:'2026-07-17', ch:'Meta',   spend:234.27, impr:17654,  reach:16944,  clicks:51,  leads:0},
-  {date:'2026-07-18', ch:'Meta',   spend:64.66,  impr:16564,  reach:14739,  clicks:25,  leads:0},
-  {date:'2026-07-19', ch:'Meta',   spend:102.37, impr:28355,  reach:27785,  clicks:146, leads:0},
-  // Google (YouTube video awareness — no reach in feed)
-  {date:'2026-07-14', ch:'Google', spend:1199.13, impr:10560, reach:null, clicks:8,  leads:0},
-  {date:'2026-07-15', ch:'Google', spend:2892.59, impr:24873, reach:null, clicks:17, leads:0},
-  {date:'2026-07-16', ch:'Google', spend:2094.88, impr:28017, reach:null, clicks:12, leads:0},
+let DATA = [
+  {date:'2026-07-13', ch:'Meta', spend:190.64, impr:47248, reach:45625, clicks:44, leads:0},
+  {date:'2026-07-14', ch:'Meta', spend:455.97, impr:109343, reach:100055, clicks:215, leads:0},
+  {date:'2026-07-16', ch:'Meta', spend:130.43, impr:24933, reach:24080, clicks:58, leads:0},
+  {date:'2026-07-17', ch:'Meta', spend:234.27, impr:17654, reach:16944, clicks:51, leads:0},
+  {date:'2026-07-18', ch:'Meta', spend:65.18, impr:16687, reach:14825, clicks:27, leads:0},
+  {date:'2026-07-19', ch:'Meta', spend:1489.49, impr:356398, reach:307074, clicks:1352, leads:0},
+  {date:'2026-07-20', ch:'Meta', spend:827.16, impr:168372, reach:139498, clicks:263, leads:0},
+  {date:'2026-07-14', ch:'Google', spend:1199.13, impr:10560, reach:null, clicks:8, leads:0},
+  {date:'2026-07-15', ch:'Google', spend:2890.38, impr:24873, reach:null, clicks:17, leads:0},
+  {date:'2026-07-16', ch:'Google', spend:2093.3, impr:28017, reach:null, clicks:12, leads:0},
   {date:'2026-07-17', ch:'Google', spend:2078.24, impr:28986, reach:null, clicks:13, leads:0},
   {date:'2026-07-18', ch:'Google', spend:2076.88, impr:30341, reach:null, clicks:17, leads:0},
-  {date:'2026-07-19', ch:'Google', spend:1149.48, impr:17467, reach:null, clicks:9,  leads:0},
+  {date:'2026-07-19', ch:'Google', spend:2069.73, impr:32923, reach:null, clicks:16, leads:0},
+  {date:'2026-07-20', ch:'Google', spend:183.32, impr:3156, reach:null, clicks:0, leads:0}
 ];
-const TODAY = '2026-07-19';
-const MIN_D = '2026-07-13', MAX_D = '2026-07-19';
+let TODAY = '2026-07-20';
+let MIN_D = '2026-07-13', MAX_D = '2026-07-20';
 
 /* ---------------- HELPERS ---------------- */
 const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
@@ -484,8 +484,17 @@ document.querySelectorAll('[data-ch]').forEach(b=>b.addEventListener('click',()=
   render();
 }));
 
-syncInputs();
-render();
+function applyData(j){
+  if(j&&Array.isArray(j.rows)&&j.rows.length){
+    DATA=j.rows;
+    var ds=DATA.map(function(r){return r.date;}).sort();
+    MIN_D=ds[0]; MAX_D=ds[ds.length-1]; TODAY=MAX_D;
+    document.querySelectorAll('input[type=date]').forEach(function(i){i.min=MIN_D;i.max=MAX_D;});
+    var u=document.getElementById('hdr-updated'); if(u&&j.updated)u.textContent=j.updated;
+  }
+}
+syncInputs(); render();
+fetch('data.json?t='+(new Date().getTime())).then(function(r){return r.json();}).then(function(j){applyData(j);syncInputs();render();}).catch(function(){});
 </script>
 <script>
 (function(){
