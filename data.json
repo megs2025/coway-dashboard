@@ -1,4 +1,4 @@
-{"updated":"20 Jul 2026, 11:43 PM IST","minDate":"2026-07-13","maxDate":"2026-07-21","rows":[
+{"updated":"21 Jul 2026, 4:48 AM IST","minDate":"2026-07-13","maxDate":"2026-07-21","rows":[
 {"date":"2026-07-13","ch":"Meta","spend":190.64,"impr":47248,"reach":45625,"clicks":44,"leads":0},
 {"date":"2026-07-14","ch":"Meta","spend":455.97,"impr":109343,"reach":100055,"clicks":215,"leads":0},
 {"date":"2026-07-16","ch":"Meta","spend":130.43,"impr":24933,"reach":24080,"clicks":58,"leads":0},
@@ -12,6 +12,6 @@
 {"date":"2026-07-17","ch":"Google","spend":2076.65,"impr":28986,"reach":null,"clicks":13,"leads":0},
 {"date":"2026-07-18","ch":"Google","spend":2076.88,"impr":30341,"reach":null,"clicks":17,"leads":0},
 {"date":"2026-07-19","ch":"Google","spend":2069.73,"impr":32923,"reach":null,"clicks":16,"leads":0},
-{"date":"2026-07-20","ch":"Google","spend":2058.16,"impr":25069,"reach":null,"clicks":8,"leads":0},
-{"date":"2026-07-21","ch":"Google","spend":422.71,"impr":6745,"reach":null,"clicks":0,"leads":0}
+{"date":"2026-07-20","ch":"Google","spend":2058.16,"impr":25060,"reach":null,"clicks":8,"leads":0},
+{"date":"2026-07-21","ch":"Google","spend":713.73,"impr":10726,"reach":null,"clicks":1,"leads":0}
 ]}
