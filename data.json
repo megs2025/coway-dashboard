@@ -1,4 +1,4 @@
-{"updated":"23 Jul 2026, 2:44 AM IST","minDate":"2026-07-13","maxDate":"2026-07-23","rows":[
+{"updated":"23 Jul 2026, 3:44 AM IST","minDate":"2026-07-13","maxDate":"2026-07-23","rows":[
 {"date":"2026-07-13","ch":"Meta","spend":190.64,"impr":47248,"reach":45625,"clicks":44,"leads":0},
 {"date":"2026-07-14","ch":"Meta","spend":455.97,"impr":109343,"reach":100055,"clicks":215,"leads":0},
 {"date":"2026-07-16","ch":"Meta","spend":130.43,"impr":24933,"reach":24080,"clicks":58,"leads":0},
@@ -7,8 +7,8 @@
 {"date":"2026-07-19","ch":"Meta","spend":1498.14,"impr":358192,"reach":308904,"clicks":1360,"leads":0},
 {"date":"2026-07-20","ch":"Meta","spend":2459.69,"impr":502417,"reach":368221,"clicks":900,"leads":0},
 {"date":"2026-07-21","ch":"Meta","spend":2614.13,"impr":533658,"reach":400236,"clicks":882,"leads":0},
-{"date":"2026-07-22","ch":"Meta","spend":2478.78,"impr":516596,"reach":378366,"clicks":825,"leads":0},
-{"date":"2026-07-23","ch":"Meta","spend":197.68,"impr":41031,"reach":37598,"clicks":52,"leads":0},
+{"date":"2026-07-22","ch":"Meta","spend":2479.39,"impr":516730,"reach":378366,"clicks":825,"leads":0},
+{"date":"2026-07-23","ch":"Meta","spend":217.88,"impr":45191,"reach":41969,"clicks":56,"leads":0},
 {"date":"2026-07-14","ch":"Google","spend":1199.13,"impr":10560,"reach":null,"clicks":8,"leads":0},
 {"date":"2026-07-15","ch":"Google","spend":2890.38,"impr":24873,"reach":null,"clicks":17,"leads":0},
 {"date":"2026-07-16","ch":"Google","spend":2092.53,"impr":28017,"reach":null,"clicks":12,"leads":0},
@@ -18,5 +18,5 @@
 {"date":"2026-07-20","ch":"Google","spend":2058.41,"impr":25060,"reach":null,"clicks":8,"leads":0},
 {"date":"2026-07-21","ch":"Google","spend":2053.07,"impr":26193,"reach":null,"clicks":8,"leads":0},
 {"date":"2026-07-22","ch":"Google","spend":2040.30,"impr":30853,"reach":null,"clicks":13,"leads":0},
-{"date":"2026-07-23","ch":"Google","spend":430.41,"impr":7920,"reach":null,"clicks":2,"leads":0}
+{"date":"2026-07-23","ch":"Google","spend":455.94,"impr":8310,"reach":null,"clicks":2,"leads":0}
 ]}
