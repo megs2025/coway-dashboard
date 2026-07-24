@@ -1,4 +1,4 @@
-{"updated":"24 Jul 2026, 4:44 PM IST","minDate":"2026-07-13","maxDate":"2026-07-24","metaReach":1041100,"rows":[
+{"updated":"24 Jul 2026, 5:44 PM IST","minDate":"2026-07-13","maxDate":"2026-07-24","metaReach":1046804,"rows":[
 {"date":"2026-07-13","ch":"Meta","spend":190.64,"impr":47248,"reach":45625,"clicks":44,"leads":0},
 {"date":"2026-07-14","ch":"Meta","spend":455.97,"impr":109343,"reach":100055,"clicks":215,"leads":0},
 {"date":"2026-07-16","ch":"Meta","spend":130.43,"impr":24933,"reach":24080,"clicks":58,"leads":0},
@@ -8,8 +8,8 @@
 {"date":"2026-07-20","ch":"Meta","spend":2459.69,"impr":502417,"reach":368221,"clicks":900,"leads":0},
 {"date":"2026-07-21","ch":"Meta","spend":2614.13,"impr":533658,"reach":400236,"clicks":882,"leads":0},
 {"date":"2026-07-22","ch":"Meta","spend":2514.61,"impr":524069,"reach":383883,"clicks":858,"leads":0},
-{"date":"2026-07-23","ch":"Meta","spend":2383.35,"impr":491784,"reach":400286,"clicks":801,"leads":0},
-{"date":"2026-07-24","ch":"Meta","spend":1373.64,"impr":269138,"reach":228449,"clicks":403,"leads":0},
+{"date":"2026-07-23","ch":"Meta","spend":2384.08,"impr":491921,"reach":400286,"clicks":801,"leads":0},
+{"date":"2026-07-24","ch":"Meta","spend":1496.27,"impr":293030,"reach":244018,"clicks":444,"leads":0},
 {"date":"2026-07-14","ch":"Google","spend":1199.13,"impr":10560,"reach":null,"clicks":8,"leads":0},
 {"date":"2026-07-15","ch":"Google","spend":2890.38,"impr":24873,"reach":null,"clicks":17,"leads":0},
 {"date":"2026-07-16","ch":"Google","spend":2092.53,"impr":28017,"reach":null,"clicks":12,"leads":0},
@@ -20,5 +20,5 @@
 {"date":"2026-07-21","ch":"Google","spend":2050.29,"impr":26193,"reach":null,"clicks":8,"leads":0},
 {"date":"2026-07-22","ch":"Google","spend":2040.30,"impr":30853,"reach":null,"clicks":13,"leads":0},
 {"date":"2026-07-23","ch":"Google","spend":2030.94,"impr":33255,"reach":null,"clicks":11,"leads":0},
-{"date":"2026-07-24","ch":"Google","spend":1321.63,"impr":23202,"reach":null,"clicks":6,"leads":0}
+{"date":"2026-07-24","ch":"Google","spend":1430.26,"impr":25420,"reach":null,"clicks":6,"leads":0}
 ]}
