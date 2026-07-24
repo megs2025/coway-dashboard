@@ -287,7 +287,7 @@
   <div class="card tablecard"><div id="table-wrap"></div></div>
 
   <div class="foot-note">
-    Data sources: <b>Meta Ads Manager</b> (Coway India account) &amp; <b>Google Ads</b> (via connected Google Sheet) · Reach is aggregated from daily Meta figures; Google video reach is not provided in the feed.<br>
+    Data sources: <b>Meta Ads Manager</b> (Coway India account) &amp; <b>Google Ads</b> (via connected Google Sheet) · Reach is Meta&rsquo;s de-duplicated unique reach for the selected period (matches Meta Ads Manager); daily reach in the table is per-day and is not additive. Google video reach is not provided in the feed.<br>
     Prepared &amp; managed for Coway India by
     <span class="bwm"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0057B8" stroke-width="2.4"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Bismarck World Media Pvt. Ltd.</span>
   </div>
@@ -324,6 +324,23 @@ function addDays(s,n){const [y,m,d]=s.split('-').map(Number);const dt=new Date(D
 function clamp(s){return s<MIN_D?MIN_D:(s>MAX_D?MAX_D:s);}
 
 let state = {from:'2026-07-01', to:'2026-07-31', ch:'All', preset:'month'};
+
+/* De-duplicated Meta reach for the full loaded period (from data.json.metaReach).
+   Reach counts unique people and is NOT additive across days, so summing daily
+   reach overstates it. When the selection spans the whole Meta period and the
+   channel includes Meta, show this true de-duplicated figure instead of the sum. */
+let META_REACH = null;
+function metaReachSpan(){
+  var md=DATA.filter(function(r){return r.ch==='Meta'&&r.reach!=null;}).map(function(r){return r.date;}).sort();
+  return md.length?{min:md[0],max:md[md.length-1]}:null;
+}
+function reachDedup(a){
+  var sp=metaReachSpan();
+  if(a.hasReach&&META_REACH!=null&&(state.ch==='All'||state.ch==='Meta')&&sp&&state.from<=sp.min&&state.to>=sp.max){
+    return {v:META_REACH,dedup:true};
+  }
+  return {v:a.reach,dedup:false};
+}
 
 function aggregate(rows){
   let s={spend:0,impr:0,reach:0,clicks:0,leads:0,hasReach:false};
@@ -363,8 +380,9 @@ function render(){
   }
 
   const avgDaily = a.spend/activeDays;
-  const reachDisp = a.hasReach ? num(a.reach) : '—';
-  const reachFoot = a.hasReach ? (state.ch==='All'?'Aggregate daily (Meta)':'Unique accounts reached') : 'Not tracked for Google';
+  const rv = reachDedup(a);
+  const reachDisp = a.hasReach ? num(rv.v) : '—';
+  const reachFoot = a.hasReach ? (rv.dedup ? 'Unique people reached · Meta (de-duplicated)' : 'Aggregate of daily · Meta (approx.)') : 'Not tracked for Google';
   // KPI tiles
   const kpis = [
     {c:'Total Spend', v:inr(a.spend), f:'Accumulated investment', i:'<path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'},
@@ -417,7 +435,7 @@ function renderTable(dates,rows){
     return `<tr><td class="day-b">${fmtDate(d)} ${tag}</td><td>${inr2(da.spend)}</td><td>${num(da.impr)}</td><td>${da.hasReach?num(da.reach):'—'}</td><td>${num(da.clicks)}</td><td>${inr2(da.cpm)}</td><td>${inr2(da.cpc)}</td><td>${da.ctr.toFixed(2)}%</td></tr>`;
   }).join('');
   const t = aggregate(rows);
-  body += `<tr class="total"><td>Total</td><td>${inr2(t.spend)}</td><td>${num(t.impr)}</td><td>${t.hasReach?num(t.reach):'—'}</td><td>${num(t.clicks)}</td><td>${inr2(t.cpm)}</td><td>${inr2(t.cpc)}</td><td>${t.ctr.toFixed(2)}%</td></tr>`;
+  body += `<tr class="total"><td>Total</td><td>${inr2(t.spend)}</td><td>${num(t.impr)}</td><td>${t.hasReach?num(reachDedup(t).v):'—'}</td><td>${num(t.clicks)}</td><td>${inr2(t.cpm)}</td><td>${inr2(t.cpc)}</td><td>${t.ctr.toFixed(2)}%</td></tr>`;
   document.getElementById('table-wrap').innerHTML =
     `<table><thead><tr><th>Date</th><th>Spend</th><th>Impr.</th><th>Reach</th><th>Clicks</th><th>CPM</th><th>CPC</th><th>CTR</th></tr></thead><tbody>${body}</tbody></table>`;
 }
@@ -487,6 +505,7 @@ document.querySelectorAll('[data-ch]').forEach(b=>b.addEventListener('click',()=
 function applyData(j){
   if(j&&Array.isArray(j.rows)&&j.rows.length){
     DATA=j.rows;
+    if(typeof j.metaReach==='number'){META_REACH=j.metaReach;}
     var ds=DATA.map(function(r){return r.date;}).sort();
     MIN_D=ds[0]; MAX_D=ds[ds.length-1]; TODAY=MAX_D;
     document.querySelectorAll('input[type=date]').forEach(function(i){i.min=MIN_D;i.max=MAX_D;});
