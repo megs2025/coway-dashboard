@@ -1,4 +1,4 @@
-{"updated":"28 Jul 2026, 1:44 AM IST","minDate":"2026-07-13","maxDate":"2026-07-28","metaReach":1318133,"rows":[
+{"updated":"28 Jul 2026, 2:44 AM IST","minDate":"2026-07-13","maxDate":"2026-07-28","metaReach":1318133,"rows":[
 {"date":"2026-07-13","ch":"Meta","spend":190.64,"impr":47248,"reach":45625,"clicks":44,"leads":0},
 {"date":"2026-07-14","ch":"Meta","spend":455.97,"impr":109343,"reach":100055,"clicks":215,"leads":0},
 {"date":"2026-07-16","ch":"Meta","spend":130.43,"impr":24933,"reach":24080,"clicks":58,"leads":0},
@@ -12,7 +12,7 @@
 {"date":"2026-07-24","ch":"Meta","spend":2457.14,"impr":480122,"reach":397381,"clicks":768,"leads":0},
 {"date":"2026-07-25","ch":"Meta","spend":2519.12,"impr":477950,"reach":384257,"clicks":782,"leads":0},
 {"date":"2026-07-26","ch":"Meta","spend":2602.05,"impr":474836,"reach":372336,"clicks":808,"leads":0},
-{"date":"2026-07-27","ch":"Meta","spend":929.96,"impr":175443,"reach":155491,"clicks":296,"leads":0},
+{"date":"2026-07-27","ch":"Meta","spend":930.22,"impr":175489,"reach":155582,"clicks":296,"leads":0},
 {"date":"2026-07-14","ch":"Google","spend":1199.13,"impr":10560,"reach":null,"clicks":8,"leads":0},
 {"date":"2026-07-15","ch":"Google","spend":2890.38,"impr":24873,"reach":null,"clicks":17,"leads":0},
 {"date":"2026-07-16","ch":"Google","spend":2092.53,"impr":28017,"reach":null,"clicks":12,"leads":0},
@@ -26,6 +26,6 @@
 {"date":"2026-07-24","ch":"Google","spend":2018.08,"impr":36990,"reach":null,"clicks":9,"leads":0},
 {"date":"2026-07-25","ch":"Google","spend":2004.65,"impr":39697,"reach":null,"clicks":9,"leads":0},
 {"date":"2026-07-26","ch":"Google","spend":1982.75,"impr":45307,"reach":null,"clicks":8,"leads":0},
-{"date":"2026-07-27","ch":"Google","spend":1958.39,"impr":41366,"reach":null,"clicks":6,"leads":0},
-{"date":"2026-07-28","ch":"Google","spend":414.75,"impr":9170,"reach":null,"clicks":1,"leads":0}
+{"date":"2026-07-27","ch":"Google","spend":1958.39,"impr":41365,"reach":null,"clicks":6,"leads":0},
+{"date":"2026-07-28","ch":"Google","spend":455.37,"impr":9960,"reach":null,"clicks":2,"leads":0}
 ]}
