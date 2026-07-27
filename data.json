@@ -1,4 +1,4 @@
-{"updated":"27 Jul 2026, 7:44 AM IST","minDate":"2026-07-13","maxDate":"2026-07-27","metaReach":1304076,"rows":[
+{"updated":"27 Jul 2026, 8:44 AM IST","minDate":"2026-07-13","maxDate":"2026-07-27","metaReach":1305158,"rows":[
 {"date":"2026-07-13","ch":"Meta","spend":190.64,"impr":47248,"reach":45625,"clicks":44,"leads":0},
 {"date":"2026-07-14","ch":"Meta","spend":455.97,"impr":109343,"reach":100055,"clicks":215,"leads":0},
 {"date":"2026-07-16","ch":"Meta","spend":130.43,"impr":24933,"reach":24080,"clicks":58,"leads":0},
@@ -11,8 +11,8 @@
 {"date":"2026-07-23","ch":"Meta","spend":2386.83,"impr":492510,"reach":400675,"clicks":805,"leads":0},
 {"date":"2026-07-24","ch":"Meta","spend":2457.14,"impr":480122,"reach":397381,"clicks":768,"leads":0},
 {"date":"2026-07-25","ch":"Meta","spend":2519.12,"impr":477950,"reach":384257,"clicks":782,"leads":0},
-{"date":"2026-07-26","ch":"Meta","spend":2573.99,"impr":469652,"reach":368297,"clicks":790,"leads":0},
-{"date":"2026-07-27","ch":"Meta","spend":387.28,"impr":71544,"reach":63753,"clicks":103,"leads":0},
+{"date":"2026-07-26","ch":"Meta","spend":2578.51,"impr":470467,"reach":369102,"clicks":792,"leads":0},
+{"date":"2026-07-27","ch":"Meta","spend":479.27,"impr":89212,"reach":77719,"clicks":129,"leads":0},
 {"date":"2026-07-14","ch":"Google","spend":1199.13,"impr":10560,"reach":null,"clicks":8,"leads":0},
 {"date":"2026-07-15","ch":"Google","spend":2890.38,"impr":24873,"reach":null,"clicks":17,"leads":0},
 {"date":"2026-07-16","ch":"Google","spend":2092.53,"impr":28017,"reach":null,"clicks":12,"leads":0},
@@ -26,5 +26,5 @@
 {"date":"2026-07-24","ch":"Google","spend":2018.08,"impr":36990,"reach":null,"clicks":9,"leads":0},
 {"date":"2026-07-25","ch":"Google","spend":2004.65,"impr":39697,"reach":null,"clicks":9,"leads":0},
 {"date":"2026-07-26","ch":"Google","spend":1982.75,"impr":45307,"reach":null,"clicks":8,"leads":0},
-{"date":"2026-07-27","ch":"Google","spend":617.42,"impr":15324,"reach":null,"clicks":1,"leads":0}
+{"date":"2026-07-27","ch":"Google","spend":684.51,"impr":16478,"reach":null,"clicks":1,"leads":0}
 ]}
