@@ -1,4 +1,4 @@
-{"updated":"30 Jul 2026, 9:44 AM IST","minDate":"2026-07-13","maxDate":"2026-07-30","metaReach":1424367,"rows":[
+{"updated":"30 Jul 2026, 10:44 AM IST","minDate":"2026-07-13","maxDate":"2026-07-30","metaReach":1436342,"rows":[
 {"date":"2026-07-13","ch":"Meta","spend":190.64,"impr":47248,"reach":45625,"clicks":44,"leads":0},
 {"date":"2026-07-14","ch":"Meta","spend":455.97,"impr":109343,"reach":100055,"clicks":215,"leads":0},
 {"date":"2026-07-16","ch":"Meta","spend":130.43,"impr":24933,"reach":24080,"clicks":58,"leads":0},
@@ -15,7 +15,7 @@
 {"date":"2026-07-27","ch":"Meta","spend":931.89,"impr":175804,"reach":155642,"clicks":299,"leads":0},
 {"date":"2026-07-28","ch":"Meta","spend":1999.74,"impr":456373,"reach":363316,"clicks":1016,"leads":0},
 {"date":"2026-07-29","ch":"Meta","spend":90.80,"impr":19753,"reach":19490,"clicks":22,"leads":0},
-{"date":"2026-07-30","ch":"Meta","spend":456.23,"impr":18286,"reach":13276,"clicks":65,"leads":0},
+{"date":"2026-07-30","ch":"Meta","spend":1659.06,"impr":77333,"reach":62936,"clicks":281,"leads":0},
 {"date":"2026-07-14","ch":"Google","spend":1199.13,"impr":10560,"reach":null,"clicks":8,"leads":0},
 {"date":"2026-07-15","ch":"Google","spend":2890.38,"impr":24873,"reach":null,"clicks":17,"leads":0},
 {"date":"2026-07-16","ch":"Google","spend":2092.53,"impr":28017,"reach":null,"clicks":12,"leads":0},
@@ -32,5 +32,5 @@
 {"date":"2026-07-27","ch":"Google","spend":1958.56,"impr":41363,"reach":null,"clicks":6,"leads":0},
 {"date":"2026-07-28","ch":"Google","spend":1949.02,"impr":38838,"reach":null,"clicks":24,"leads":0},
 {"date":"2026-07-29","ch":"Google","spend":1906.59,"impr":38144,"reach":null,"clicks":37,"leads":0},
-{"date":"2026-07-30","ch":"Google","spend":776.77,"impr":15124,"reach":null,"clicks":11,"leads":0}
+{"date":"2026-07-30","ch":"Google","spend":870.39,"impr":16636,"reach":null,"clicks":12,"leads":0}
 ]}
