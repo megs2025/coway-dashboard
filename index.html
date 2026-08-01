@@ -233,9 +233,9 @@
     </div>
     <div class="ctl-group daterange">
       <span class="ctl-label">Custom</span>
-      <input type="date" id="from" min="2026-07-13" max="2026-07-20">
+      <input type="date" id="from" min="2026-07-13" max="2026-07-31">
       <span>to</span>
-      <input type="date" id="to" min="2026-07-13" max="2026-07-20">
+      <input type="date" id="to" min="2026-07-13" max="2026-07-31">
     </div>
   </div>
 
@@ -271,15 +271,10 @@
       <div class="ministat" id="aware-stats"></div>
     </div>
     <div class="objcard">
-      <span class="tag leadg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg>LEAD GENERATION · READY</span>
-      <h3>Lead campaigns launching soon</h3>
-      <div class="desc">Panel is live and will populate the moment lead-gen goes active.</div>
-      <div class="ministat">
-        <div class="m"><div class="k">Leads</div><div class="v">0</div></div>
-        <div class="m"><div class="k">Cost / Lead</div><div class="v">—</div></div>
-        <div class="m"><div class="k">Spend</div><div class="v">₹0</div></div>
-      </div>
-      <div class="reserved-note"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Current delivery on both channels is optimised for reach &amp; awareness, so no leads are recorded yet. Lead volume &amp; cost-per-lead will appear here automatically once lead-generation campaigns begin.</div>
+      <span class="tag leadg"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg>LEAD GENERATION · LIVE</span>
+      <h3 id="leadgen-h">Leads &amp; cost-per-lead by platform</h3>
+      <div class="desc">Total leads and CPL for each channel, updated live.</div>
+      <div class="ministat" id="leadgen-stats"></div>
     </div>
   </div>
 
@@ -348,6 +343,7 @@ function aggregate(rows){
   s.cpm = s.impr? s.spend/s.impr*1000 : 0;
   s.cpc = s.clicks? s.spend/s.clicks : 0;
   s.ctr = s.impr? s.clicks/s.impr*100 : 0;
+  s.cpl = s.leads? s.spend/s.leads : 0;
   return s;
 }
 function filtered(){
@@ -392,7 +388,7 @@ function render(){
     {c:'CPM', v:inr2(a.cpm), f:'Cost per 1,000 impressions', i:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>'},
     {c:'CPC', v:inr2(a.cpc), f:'Cost per click', i:'<path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>'},
     {c:'CTR', v:a.ctr.toFixed(2)+'%', f:'Click-through rate', i:'<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>'},
-    {c:'Leads', v:num(a.leads), f:'Lead-gen launching soon', i:'<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/>'},
+    {c:'Leads', v:num(a.leads), f:a.leads?('Blended CPL '+inr2(a.cpl)):'No leads in range', i:'<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/>'},
   ];
   document.getElementById('kpis').innerHTML = kpis.map(k=>`<div class="kpi"><div class="cap"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${k.i}</svg>${k.c}</div><div class="val">${k.v}</div><div class="foot">${k.f}</div></div>`).join('');
 
@@ -413,13 +409,25 @@ function render(){
   document.getElementById('chan-cards').innerHTML = chans.map(cn=>{
     const ca = aggregate(rows.filter(r=>r.ch===cn));
     const share = Math.round(ca.spend/totSpend*100);
-    const cells=[['Spend',inr(ca.spend)],['Impressions',num(ca.impr)],['Clicks',num(ca.clicks)],['CPM',inr2(ca.cpm)],['CPC',inr2(ca.cpc)],['CTR',ca.ctr.toFixed(2)+'%']];
+    const cells=[['Spend',inr(ca.spend)],['Leads',num(ca.leads)],['CPL',ca.leads?inr2(ca.cpl):'—'],['Impressions',num(ca.impr)],['Clicks',num(ca.clicks)],['CPM',inr2(ca.cpm)],['CPC',inr2(ca.cpc)],['CTR',ca.ctr.toFixed(2)+'%']];
     return `<div class="cc"><div class="cc-h">${chIcon[cn]}<h3>${cn==='Meta'?'Meta Ads':'Google Ads'}</h3><span class="pct">${share}% of spend</span></div><div class="ccgrid">${cells.map(c=>`<div class="m"><div class="k">${c[0]}</div><div class="v">${c[1]}</div></div>`).join('')}</div></div>`;
   }).join('');
 
   // awareness stats
   const as=[['Spend',inr(a.spend)],['Reach',a.hasReach?num(a.reach):'—'],['Impressions',num(a.impr)],['CPM',inr2(a.cpm)],['CTR',a.ctr.toFixed(2)+'%'],['Clicks',num(a.clicks)]];
   document.getElementById('aware-stats').innerHTML = as.map(x=>`<div class="m"><div class="k">${x[0]}</div><div class="v">${x[1]}</div></div>`).join('');
+
+  // lead-gen: leads & CPL per platform
+  const lgChans = state.ch==='All'?['Meta','Google']:[state.ch];
+  let lgCells=[];
+  lgChans.forEach(cn=>{
+    const cca=aggregate(rows.filter(r=>r.ch===cn));
+    lgCells.push([cn+' Leads', num(cca.leads)]);
+    lgCells.push([cn+' CPL', cca.leads?inr2(cca.cpl):'—']);
+    lgCells.push([cn+' Spend', inr(cca.spend)]);
+  });
+  const lgEl=document.getElementById('leadgen-stats');
+  if(lgEl) lgEl.innerHTML = lgCells.map(x=>`<div class="m"><div class="k">${x[0]}</div><div class="v">${x[1]}</div></div>`).join('');
 
   renderTable(dates,rows);
   renderChart(dates,rows);
