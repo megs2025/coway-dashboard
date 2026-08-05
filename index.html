@@ -233,9 +233,9 @@
     </div>
     <div class="ctl-group daterange">
       <span class="ctl-label">Custom</span>
-      <input type="date" id="from" min="2026-07-13" max="2026-07-31">
+      <input type="date" id="from" min="2026-07-13" max="2026-08-05">
       <span>to</span>
-      <input type="date" id="to" min="2026-07-13" max="2026-07-31">
+      <input type="date" id="to" min="2026-07-13" max="2026-08-05">
     </div>
   </div>
 
@@ -324,15 +324,32 @@ let state = {from:'2026-07-01', to:'2026-07-31', ch:'All', preset:'month'};
    Reach counts unique people and is NOT additive across days, so summing daily
    reach overstates it. When the selection spans the whole Meta period and the
    channel includes Meta, show this true de-duplicated figure instead of the sum. */
-let META_REACH = null;
-function metaReachSpan(){
-  var md=DATA.filter(function(r){return r.ch==='Meta'&&r.reach!=null;}).map(function(r){return r.date;}).sort();
-  return md.length?{min:md[0],max:md[md.length-1]}:null;
+let META_REACH = null;    /* full-period de-duplicated reach (data.json.metaReach) */
+let META_REACH_M = null;  /* per-month de-duplicated reach {"YYYY-MM":n} (data.json.metaReachByMonth) */
+function metaMonths(){
+  var m={};
+  DATA.forEach(function(r){
+    if(r.ch==='Meta'&&r.reach!=null){
+      var k=r.date.slice(0,7);
+      if(!m[k])m[k]={min:r.date,max:r.date};
+      if(r.date<m[k].min)m[k].min=r.date;
+      if(r.date>m[k].max)m[k].max=r.date;
+    }
+  });
+  return m;
 }
 function reachDedup(a){
-  var sp=metaReachSpan();
-  if(a.hasReach&&META_REACH!=null&&(state.ch==='All'||state.ch==='Meta')&&sp&&state.from<=sp.min&&state.to>=sp.max){
-    return {v:META_REACH,dedup:true};
+  if(!(a.hasReach&&(state.ch==='All'||state.ch==='Meta'))) return {v:a.reach,dedup:false};
+  var months=metaMonths(), keys=Object.keys(months).sort();
+  if(!keys.length) return {v:a.reach,dedup:false};
+  var gMin=months[keys[0]].min, gMax=months[keys[keys.length-1]].max;
+  /* whole loaded Meta period selected -> true cross-month de-duplicated reach */
+  if(META_REACH!=null&&state.from<=gMin&&state.to>=gMax) return {v:META_REACH,dedup:true};
+  /* exactly one calendar month fully covered and no other month touched -> that month's de-dup */
+  var fullyCovered=keys.filter(function(k){return state.from<=months[k].min&&state.to>=months[k].max;});
+  var touched=keys.filter(function(k){return !(state.to<months[k].min||state.from>months[k].max);});
+  if(fullyCovered.length===1&&touched.length===1&&META_REACH_M&&META_REACH_M[fullyCovered[0]]!=null){
+    return {v:META_REACH_M[fullyCovered[0]],dedup:true};
   }
   return {v:a.reach,dedup:false};
 }
@@ -488,7 +505,7 @@ function setPreset(p){
   if(p==='today'){state.from=TODAY;state.to=TODAY;}
   else if(p==='yesterday'){state.from=addDays(TODAY,-1);state.to=addDays(TODAY,-1);}
   else if(p==='last7'){state.from=addDays(TODAY,-6);state.to=TODAY;}
-  else if(p==='month'){state.from='2026-07-01';state.to='2026-07-31';}
+  else if(p==='month'){var mk=(TODAY||MAX_D).slice(0,7);state.from=mk+'-01';state.to=TODAY;}
   syncInputs(); render();
 }
 function syncInputs(){
@@ -514,6 +531,7 @@ function applyData(j){
   if(j&&Array.isArray(j.rows)&&j.rows.length){
     DATA=j.rows;
     if(typeof j.metaReach==='number'){META_REACH=j.metaReach;}
+    if(j.metaReachByMonth&&typeof j.metaReachByMonth==='object'){META_REACH_M=j.metaReachByMonth;}
     var ds=DATA.map(function(r){return r.date;}).sort();
     MIN_D=ds[0]; MAX_D=ds[ds.length-1]; TODAY=MAX_D;
     document.querySelectorAll('input[type=date]').forEach(function(i){i.min=MIN_D;i.max=MAX_D;});
@@ -521,7 +539,7 @@ function applyData(j){
   }
 }
 syncInputs(); render();
-fetch('data.json?t='+(new Date().getTime())).then(function(r){return r.json();}).then(function(j){applyData(j);syncInputs();render();}).catch(function(){});
+fetch('data.json?t='+(new Date().getTime())).then(function(r){return r.json();}).then(function(j){applyData(j);if(state.preset&&state.preset!=='custom'){setPreset(state.preset);}else{syncInputs();render();}}).catch(function(){});
 </script>
 <script>
 (function(){
