@@ -1,11 +1,11 @@
 {
-  "updated": "06 Aug 2026, 5:50 AM IST",
+  "updated": "06 Aug 2026, 6:47 AM IST",
   "minDate": "2026-07-13",
   "maxDate": "2026-08-06",
-  "metaReach": 2086939,
+  "metaReach": 2086960,
   "metaReachByMonth": {
     "2026-07": 1686474,
-    "2026-08": 1140634
+    "2026-08": 1140638
   },
   "rows": [
     {
@@ -209,19 +209,19 @@
     {
       "date": "2026-08-05",
       "ch": "Meta",
-      "spend": 9712.04,
-      "impr": 478527,
+      "spend": 9713.61,
+      "impr": 478815,
       "reach": 378681,
-      "clicks": 1095,
+      "clicks": 1096,
       "leads": 46
     },
     {
       "date": "2026-08-06",
       "ch": "Meta",
-      "spend": 982.05,
-      "impr": 47478,
-      "reach": 43702,
-      "clicks": 90,
+      "spend": 1135.97,
+      "impr": 51952,
+      "reach": 48036,
+      "clicks": 102,
       "leads": 3
     },
     {
@@ -434,10 +434,10 @@
     {
       "date": "2026-08-06",
       "ch": "Google",
-      "spend": 4336.5,
-      "impr": 7617,
+      "spend": 4455.43,
+      "impr": 7883,
       "reach": null,
-      "clicks": 430,
+      "clicks": 439,
       "leads": 1
     }
   ]
