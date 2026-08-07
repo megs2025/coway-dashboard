@@ -1,8 +1,12 @@
 {
-  "updated": "8 Aug 2026, 4:47 AM IST",
+  "updated": "8 Aug 2026, 4:49 AM IST",
   "minDate": "2026-07-13",
   "maxDate": "2026-08-08",
-  "metaReach": 1308400,
+  "metaReach": 2188862,
+  "metaReachByMonth": {
+    "2026-07": 1686474,
+    "2026-08": 1308400
+  },
   "rows": [
     {
       "date": "2026-07-13",
@@ -155,7 +159,7 @@
       "impr": 664391,
       "reach": 471186,
       "clicks": 1936,
-      "leads": 0
+      "leads": 45
     },
     {
       "date": "2026-07-31",
@@ -164,7 +168,7 @@
       "impr": 751801,
       "reach": 554958,
       "clicks": 1791,
-      "leads": 0
+      "leads": 37
     },
     {
       "date": "2026-08-01",
@@ -173,7 +177,7 @@
       "impr": 802884,
       "reach": 589729,
       "clicks": 2001,
-      "leads": 0
+      "leads": 30
     },
     {
       "date": "2026-08-02",
@@ -182,7 +186,7 @@
       "impr": 609119,
       "reach": 484973,
       "clicks": 1822,
-      "leads": 0
+      "leads": 69
     },
     {
       "date": "2026-08-03",
@@ -191,7 +195,7 @@
       "impr": 561156,
       "reach": 434524,
       "clicks": 1580,
-      "leads": 0
+      "leads": 66
     },
     {
       "date": "2026-08-04",
@@ -200,7 +204,7 @@
       "impr": 509776,
       "reach": 407823,
       "clicks": 1312,
-      "leads": 0
+      "leads": 54
     },
     {
       "date": "2026-08-05",
@@ -209,7 +213,7 @@
       "impr": 484846,
       "reach": 381692,
       "clicks": 1119,
-      "leads": 0
+      "leads": 46
     },
     {
       "date": "2026-08-06",
@@ -218,25 +222,25 @@
       "impr": 562347,
       "reach": 451640,
       "clicks": 1374,
-      "leads": 0
+      "leads": 31
     },
     {
       "date": "2026-08-07",
       "ch": "Meta",
-      "spend": 11605.26,
-      "impr": 489894,
+      "spend": 11605.29,
+      "impr": 489901,
       "reach": 379550,
       "clicks": 1221,
-      "leads": 0
+      "leads": 36
     },
     {
       "date": "2026-08-08",
       "ch": "Meta",
-      "spend": 1303.29,
-      "impr": 47270,
-      "reach": 43839,
-      "clicks": 105,
-      "leads": 0
+      "spend": 1309.36,
+      "impr": 47419,
+      "reach": 44046,
+      "clicks": 106,
+      "leads": 4
     },
     {
       "date": "2026-07-14",
