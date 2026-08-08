@@ -1,5 +1,5 @@
 {
-  "updated": "8 Aug 2026, 4:49 AM IST",
+  "updated": "8 Aug 2026, 5:47 AM IST",
   "minDate": "2026-07-13",
   "maxDate": "2026-08-08",
   "metaReach": 2188862,
@@ -470,10 +470,10 @@
     {
       "date": "2026-08-08",
       "ch": "Google",
-      "spend": 1291.24,
-      "impr": 11168,
+      "spend": 1319.78,
+      "impr": 11356,
       "reach": null,
-      "clicks": 203,
+      "clicks": 210,
       "leads": 1
     }
   ]
