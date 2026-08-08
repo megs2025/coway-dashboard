@@ -1,5 +1,5 @@
 {
- "updated": "8 Aug 2026, 2:47 PM IST",
+ "updated": "08 Aug 2026, 3:45 PM IST",
  "minDate": "2026-07-13",
  "maxDate": "2026-08-08",
  "metaReach": 2208201,
@@ -159,7 +159,7 @@
    "impr": 664391,
    "reach": 471186,
    "clicks": 1936,
-   "leads": 45
+   "leads": 0
   },
   {
    "date": "2026-07-31",
@@ -168,7 +168,7 @@
    "impr": 751801,
    "reach": 554958,
    "clicks": 1791,
-   "leads": 37
+   "leads": 0
   },
   {
    "date": "2026-08-01",
@@ -177,7 +177,7 @@
    "impr": 802884,
    "reach": 589729,
    "clicks": 2001,
-   "leads": 30
+   "leads": 0
   },
   {
    "date": "2026-08-02",
@@ -186,7 +186,7 @@
    "impr": 609119,
    "reach": 484973,
    "clicks": 1822,
-   "leads": 69
+   "leads": 0
   },
   {
    "date": "2026-08-03",
@@ -195,7 +195,7 @@
    "impr": 561156,
    "reach": 434524,
    "clicks": 1580,
-   "leads": 66
+   "leads": 0
   },
   {
    "date": "2026-08-04",
@@ -204,7 +204,7 @@
    "impr": 509776,
    "reach": 407823,
    "clicks": 1312,
-   "leads": 54
+   "leads": 0
   },
   {
    "date": "2026-08-05",
@@ -213,34 +213,34 @@
    "impr": 484846,
    "reach": 381692,
    "clicks": 1119,
-   "leads": 46
+   "leads": 0
   },
   {
    "date": "2026-08-06",
    "ch": "Meta",
-   "spend": 9993.09,
-   "impr": 562348,
+   "spend": 9993.47,
+   "impr": 562349,
    "reach": 451640,
    "clicks": 1374,
-   "leads": 31
+   "leads": 0
   },
   {
    "date": "2026-08-07",
    "ch": "Meta",
-   "spend": 11642.94,
-   "impr": 494325,
-   "reach": 382599,
-   "clicks": 1241,
-   "leads": 36
+   "spend": 11645.77,
+   "impr": 494539,
+   "reach": 382644,
+   "clicks": 1244,
+   "leads": 0
   },
   {
    "date": "2026-08-08",
    "ch": "Meta",
-   "spend": 7281.11,
-   "impr": 233538,
-   "reach": 203393,
-   "clicks": 510,
-   "leads": 17
+   "spend": 8226.53,
+   "impr": 255377,
+   "reach": 221588,
+   "clicks": 583,
+   "leads": 0
   },
   {
    "date": "2026-07-14",
@@ -417,7 +417,7 @@
    "date": "2026-08-02",
    "ch": "Google",
    "spend": 1736.37,
-   "impr": 3626,
+   "impr": 3620,
    "reach": null,
    "clicks": 122,
    "leads": 15
@@ -443,7 +443,7 @@
   {
    "date": "2026-08-05",
    "ch": "Google",
-   "spend": 2369.45,
+   "spend": 2367.45,
    "impr": 4821,
    "reach": null,
    "clicks": 43,
@@ -452,7 +452,7 @@
   {
    "date": "2026-08-06",
    "ch": "Google",
-   "spend": 14176.59,
+   "spend": 14173.46,
    "impr": 59010,
    "reach": null,
    "clicks": 553,
@@ -470,10 +470,10 @@
   {
    "date": "2026-08-08",
    "ch": "Google",
-   "spend": 4628.34,
-   "impr": 27648,
+   "spend": 4852.89,
+   "impr": 29113,
    "reach": null,
-   "clicks": 492,
+   "clicks": 495,
    "leads": 1
   }
  ]
