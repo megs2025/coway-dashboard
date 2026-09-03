@@ -1,9 +1,455 @@
 {
-  "updated": "03 Sep 2026, 8:50 PM IST",
-  "minDate": "2026-07-14",
+  "updated": "03 Sep 2026, 8:51 PM IST",
+  "minDate": "2026-07-13",
   "maxDate": "2026-09-03",
-  "metaReach": 108863,
+  "metaReach": 2629976,
+  "metaReachByMonth": {
+    "2026-07": 1415592,
+    "2026-08": 2040457,
+    "2026-09": 108863
+  },
   "rows": [
+    {
+      "date": "2026-07-13",
+      "ch": "Meta",
+      "spend": 190.64,
+      "impr": 47248,
+      "reach": 45531,
+      "clicks": 44,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-14",
+      "ch": "Meta",
+      "spend": 455.97,
+      "impr": 109343,
+      "reach": 97620,
+      "clicks": 215,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-16",
+      "ch": "Meta",
+      "spend": 130.43,
+      "impr": 24933,
+      "reach": 23832,
+      "clicks": 58,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-17",
+      "ch": "Meta",
+      "spend": 234.27,
+      "impr": 17654,
+      "reach": 16944,
+      "clicks": 51,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-18",
+      "ch": "Meta",
+      "spend": 65.18,
+      "impr": 16687,
+      "reach": 14825,
+      "clicks": 27,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-19",
+      "ch": "Meta",
+      "spend": 1498.14,
+      "impr": 358192,
+      "reach": 165075,
+      "clicks": 1360,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-20",
+      "ch": "Meta",
+      "spend": 2459.69,
+      "impr": 502417,
+      "reach": 357676,
+      "clicks": 900,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-21",
+      "ch": "Meta",
+      "spend": 2614.13,
+      "impr": 533658,
+      "reach": 394687,
+      "clicks": 882,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-22",
+      "ch": "Meta",
+      "spend": 2514.61,
+      "impr": 524069,
+      "reach": 380639,
+      "clicks": 858,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-23",
+      "ch": "Meta",
+      "spend": 2386.83,
+      "impr": 492510,
+      "reach": 394418,
+      "clicks": 805,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-24",
+      "ch": "Meta",
+      "spend": 2457.14,
+      "impr": 480122,
+      "reach": 390164,
+      "clicks": 768,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-25",
+      "ch": "Meta",
+      "spend": 2519.12,
+      "impr": 477950,
+      "reach": 377311,
+      "clicks": 782,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-26",
+      "ch": "Meta",
+      "spend": 2602.05,
+      "impr": 474836,
+      "reach": 365619,
+      "clicks": 808,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-27",
+      "ch": "Meta",
+      "spend": 931.89,
+      "impr": 175804,
+      "reach": 153170,
+      "clicks": 299,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-28",
+      "ch": "Meta",
+      "spend": 1999.74,
+      "impr": 456373,
+      "reach": 310115,
+      "clicks": 1016,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-29",
+      "ch": "Meta",
+      "spend": 90.8,
+      "impr": 19753,
+      "reach": 19024,
+      "clicks": 22,
+      "leads": 0
+    },
+    {
+      "date": "2026-07-30",
+      "ch": "Meta",
+      "spend": 11227.75,
+      "impr": 664391,
+      "reach": 449267,
+      "clicks": 1936,
+      "leads": 45
+    },
+    {
+      "date": "2026-07-31",
+      "ch": "Meta",
+      "spend": 10219.22,
+      "impr": 751801,
+      "reach": 541523,
+      "clicks": 1791,
+      "leads": 37
+    },
+    {
+      "date": "2026-08-01",
+      "ch": "Meta",
+      "spend": 10015.65,
+      "impr": 802884,
+      "reach": 580498,
+      "clicks": 2001,
+      "leads": 30
+    },
+    {
+      "date": "2026-08-02",
+      "ch": "Meta",
+      "spend": 12097.76,
+      "impr": 609119,
+      "reach": 473431,
+      "clicks": 1822,
+      "leads": 69
+    },
+    {
+      "date": "2026-08-03",
+      "ch": "Meta",
+      "spend": 11059.96,
+      "impr": 561156,
+      "reach": 421871,
+      "clicks": 1580,
+      "leads": 66
+    },
+    {
+      "date": "2026-08-04",
+      "ch": "Meta",
+      "spend": 9607.37,
+      "impr": 509776,
+      "reach": 407823,
+      "clicks": 1312,
+      "leads": 54
+    },
+    {
+      "date": "2026-08-05",
+      "ch": "Meta",
+      "spend": 9753.14,
+      "impr": 484846,
+      "reach": 381692,
+      "clicks": 1119,
+      "leads": 46
+    },
+    {
+      "date": "2026-08-06",
+      "ch": "Meta",
+      "spend": 9993.47,
+      "impr": 562349,
+      "reach": 422877,
+      "clicks": 1374,
+      "leads": 31
+    },
+    {
+      "date": "2026-08-07",
+      "ch": "Meta",
+      "spend": 11659.41,
+      "impr": 495420,
+      "reach": 372441,
+      "clicks": 1246,
+      "leads": 36
+    },
+    {
+      "date": "2026-08-08",
+      "ch": "Meta",
+      "spend": 14406.73,
+      "impr": 509751,
+      "reach": 383770,
+      "clicks": 1150,
+      "leads": 32
+    },
+    {
+      "date": "2026-08-09",
+      "ch": "Meta",
+      "spend": 18683.34,
+      "impr": 543940,
+      "reach": 430432,
+      "clicks": 1664,
+      "leads": 93
+    },
+    {
+      "date": "2026-08-10",
+      "ch": "Meta",
+      "spend": 19536.08,
+      "impr": 582778,
+      "reach": 449718,
+      "clicks": 2026,
+      "leads": 96
+    },
+    {
+      "date": "2026-08-11",
+      "ch": "Meta",
+      "spend": 14630.38,
+      "impr": 529993,
+      "reach": 410186,
+      "clicks": 1526,
+      "leads": 76
+    },
+    {
+      "date": "2026-08-12",
+      "ch": "Meta",
+      "spend": 13102.61,
+      "impr": 515597,
+      "reach": 415533,
+      "clicks": 1305,
+      "leads": 47
+    },
+    {
+      "date": "2026-08-13",
+      "ch": "Meta",
+      "spend": 16089.99,
+      "impr": 599576,
+      "reach": 490253,
+      "clicks": 1433,
+      "leads": 71
+    },
+    {
+      "date": "2026-08-14",
+      "ch": "Meta",
+      "spend": 18187.11,
+      "impr": 527883,
+      "reach": 435786,
+      "clicks": 1413,
+      "leads": 94
+    },
+    {
+      "date": "2026-08-15",
+      "ch": "Meta",
+      "spend": 17545.94,
+      "impr": 564737,
+      "reach": 461144,
+      "clicks": 1485,
+      "leads": 80
+    },
+    {
+      "date": "2026-08-16",
+      "ch": "Meta",
+      "spend": 19161.97,
+      "impr": 595214,
+      "reach": 474117,
+      "clicks": 1577,
+      "leads": 80
+    },
+    {
+      "date": "2026-08-17",
+      "ch": "Meta",
+      "spend": 12112.86,
+      "impr": 200906,
+      "reach": 179442,
+      "clicks": 868,
+      "leads": 62
+    },
+    {
+      "date": "2026-08-18",
+      "ch": "Meta",
+      "spend": 6608.03,
+      "impr": 12137,
+      "reach": 9080,
+      "clicks": 299,
+      "leads": 28
+    },
+    {
+      "date": "2026-08-19",
+      "ch": "Meta",
+      "spend": 10328.03,
+      "impr": 20086,
+      "reach": 15064,
+      "clicks": 505,
+      "leads": 48
+    },
+    {
+      "date": "2026-08-20",
+      "ch": "Meta",
+      "spend": 9925.5,
+      "impr": 19716,
+      "reach": 15579,
+      "clicks": 519,
+      "leads": 38
+    },
+    {
+      "date": "2026-08-21",
+      "ch": "Meta",
+      "spend": 8643.34,
+      "impr": 18554,
+      "reach": 14103,
+      "clicks": 404,
+      "leads": 34
+    },
+    {
+      "date": "2026-08-22",
+      "ch": "Meta",
+      "spend": 9496.86,
+      "impr": 17808,
+      "reach": 13317,
+      "clicks": 332,
+      "leads": 18
+    },
+    {
+      "date": "2026-08-23",
+      "ch": "Meta",
+      "spend": 9245.32,
+      "impr": 13664,
+      "reach": 10233,
+      "clicks": 249,
+      "leads": 22
+    },
+    {
+      "date": "2026-08-24",
+      "ch": "Meta",
+      "spend": 8269.34,
+      "impr": 12884,
+      "reach": 9074,
+      "clicks": 238,
+      "leads": 12
+    },
+    {
+      "date": "2026-08-25",
+      "ch": "Meta",
+      "spend": 7665.68,
+      "impr": 12360,
+      "reach": 9333,
+      "clicks": 226,
+      "leads": 14
+    },
+    {
+      "date": "2026-08-26",
+      "ch": "Meta",
+      "spend": 20817.42,
+      "impr": 29881,
+      "reach": 21135,
+      "clicks": 529,
+      "leads": 26
+    },
+    {
+      "date": "2026-08-27",
+      "ch": "Meta",
+      "spend": 18071.84,
+      "impr": 25689,
+      "reach": 19791,
+      "clicks": 483,
+      "leads": 33
+    },
+    {
+      "date": "2026-08-28",
+      "ch": "Meta",
+      "spend": 17151.26,
+      "impr": 23339,
+      "reach": 17965,
+      "clicks": 434,
+      "leads": 29
+    },
+    {
+      "date": "2026-08-29",
+      "ch": "Meta",
+      "spend": 20900.02,
+      "impr": 28790,
+      "reach": 21910,
+      "clicks": 566,
+      "leads": 34
+    },
+    {
+      "date": "2026-08-30",
+      "ch": "Meta",
+      "spend": 23802.32,
+      "impr": 32304,
+      "reach": 23825,
+      "clicks": 651,
+      "leads": 30
+    },
+    {
+      "date": "2026-08-31",
+      "ch": "Meta",
+      "spend": 19521.2,
+      "impr": 28638,
+      "reach": 21129,
+      "clicks": 520,
+      "leads": 20
+    },
     {
       "date": "2026-09-01",
       "ch": "Meta",
@@ -11,7 +457,7 @@
       "impr": 20100,
       "reach": 15933,
       "clicks": 316,
-      "leads": 0
+      "leads": 10
     },
     {
       "date": "2026-09-02",
@@ -20,16 +466,16 @@
       "impr": 14005,
       "reach": 10980,
       "clicks": 208,
-      "leads": 0
+      "leads": 10
     },
     {
       "date": "2026-09-03",
       "ch": "Meta",
-      "spend": 6167.85,
-      "impr": 92489,
+      "spend": 6187.69,
+      "impr": 93257,
       "reach": 89650,
       "clicks": 188,
-      "leads": 0
+      "leads": 8
     },
     {
       "date": "2026-07-14",
@@ -362,15 +808,6 @@
       "impr": 40,
       "reach": null,
       "clicks": 6,
-      "leads": 0
-    },
-    {
-      "date": "2026-08-20",
-      "ch": "Google",
-      "spend": 0.0,
-      "impr": 3,
-      "reach": null,
-      "clicks": 0,
       "leads": 0
     },
     {
